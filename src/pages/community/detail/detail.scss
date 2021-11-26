@@ -1,0 +1,30 @@
+.community-detail-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .detail-total {
+        border: 1px solid black;
+        margin: 30px;
+        width: 80%;
+
+        .community-title {
+            text-align: center;
+        }
+
+        .detail-title {
+
+            .title {
+                padding: 0px 20px;
+            }
+        }
+
+        .datail-body {
+            height: 550px;
+
+            .d-body {
+                padding: 0px 20px;
+            }
+        }
+    }
+}

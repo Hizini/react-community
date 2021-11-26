@@ -1,0 +1,17 @@
+.login-container {
+    width: 700px;
+    margin: auto;
+
+    .login_input {
+        input {
+            display: block;
+            font-size: 18px;
+            height: 20px;
+            margin: 15px auto;
+            width: 600px;
+            padding: 20px;
+            border: 1px solid black;
+        }
+    }
+    
+}

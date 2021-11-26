@@ -1,0 +1,52 @@
+.mypage-container {
+    margin: 30px;
+
+    .profile {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+        .profile-img {
+            
+            img {
+                width: 180px;
+                border-radius: 50%;
+            }
+        }
+
+        .profile-info {
+            margin: 30px;
+            text-align: left;
+
+            .info-text1 {
+                font-weight: bold;
+                font-size: 25px;
+            }
+
+            .info-text2 {
+                margin-top: 10px;
+                font-size: 17px;
+            }
+        }
+    }
+
+    .comment {
+        margin: 100px;
+
+        .comment-list {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .comment-data {
+            border-top: 1px solid black;
+            margin-top: 15px;
+            padding: 10px;
+
+            .comment-each-data {
+                padding: 10px;
+                border-bottom: 1px solid gainsboro;
+            }
+        }
+    }
+}

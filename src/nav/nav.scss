@@ -1,0 +1,29 @@
+.nav-container {
+    text-align: center;
+
+.nav-home {
+    display: inline-block;
+
+    .item {
+        margin: 0px 30px;
+        
+        .home {
+            margin-top: 12px;
+            height: 100px;
+        }
+    }
+}
+
+.nav-item {
+    display: inline-block;
+    
+    .item {
+        margin: 0px 30px;
+
+        img {
+            height: 100px;
+        }
+
+    }
+}
+}

@@ -1,0 +1,85 @@
+.information-container {
+    .join_info {
+        width: 700px;
+        margin: auto;
+
+        h2 {
+            font-size: 20px;
+            color: grey;
+            border-bottom: 2px solid black;
+            font-weight: bold;
+            margin: 40px 0 30px;
+        }
+
+        .join_input {
+            input {
+                display: block;
+                font-size: 18px;
+                height: 20px;
+                margin: 15px auto;
+                width: 600px;
+                padding: 20px;
+                border: 1px solid black;
+            }
+            
+            .notMatchPassword {
+                color: red;
+                margin: 15px 35px;
+                font-size: 15px;
+
+                .match {
+                    display: none;
+                }
+            }
+            
+            .email-container {
+    
+                .emailHead {
+                    display: inline !important;
+                    width: 150px !important;
+                    padding: 20px !important;
+                    margin: 0px 30px !important;
+                }
+            
+                .emailTail {
+                    display: inline !important;
+                    width: 150px !important;
+                    padding: 20px !important;
+                    margin: 0px 30px !important;
+                }
+            
+                .selectEmail {
+                    width: 150px;
+                    padding: 20px;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
+            }
+
+            .birth-container {
+    
+                .year {
+                    display: inline !important;
+                    width: 170px !important;
+                    padding: 20px !important;
+                    margin: 15px 30px !important;
+                }
+            
+                .month {
+                    display: inline !important;
+                    width: 130px !important;
+                    padding: 20px !important;
+                    margin: 15px 9px !important;
+                }
+            
+                .day {
+                    display: inline !important;
+                    width: 130px !important;
+                    padding: 20px !important;
+                    margin: 15px 30px !important;
+                }
+            }
+        }
+    }
+}
+
