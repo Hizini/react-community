@@ -32,5 +32,11 @@
         background-color: black;
         cursor: pointer;
         margin: 30px;
+
+        &.active {
+            pointer-events: none;
+            color: white;
+            background-color: gainsboro;
+        }
     }
 }

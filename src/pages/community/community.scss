@@ -53,16 +53,18 @@
                 border-bottom: 1px solid gainsboro;
                 cursor: pointer;
 
-                .list {
-
-                }
-
                 .writer {
                     text-align: center;
                 }
     
                 .date {
                     text-align: center;
+                }
+
+                &.active {
+                    pointer-events: none;
+                    color: red;
+                    background-color: rgb(182, 180, 180);
                 }
             }
 

@@ -53,25 +53,28 @@ class Join extends Component {
         const { name, id, password, checkPassword, emailTail, emailHead, year, month, day, isGender } = this.state
         if (!name) {
             alert('닉네임을 입력해주세요.')
+            return
         }
         else if (!id) {
             alert('아이디를 입력해주세요.')
+            return
         }
         else if (!password) {
             alert('비밀번호를 입력해주세요.')
+            return
         }
         else if (password !== checkPassword) {
             alert('비밀번호가 일치하지 않습니다.')
+            return
         }
         else if (!emailHead || !emailTail) {
             alert('이메일을 입력해주세요.')
+            return
         }
         else if (!year || !month || !day) {
             alert('생년월일을 입력해주세요.')
+            return
         }
-
-        this.props.history.push('/')
-
         const body = {
             name,
             id,
@@ -85,6 +88,8 @@ class Join extends Component {
             .then(response => {
                 console.log(response)
                 alert ('회원가입이 완료되었습니다!')
+                this.props.history.push('/')
+
             })
             .catch(error => {
                 console.log(error)

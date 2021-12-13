@@ -21,71 +21,59 @@ class Community extends Component {
                 this.setState({
                     communtiyList: response.data,
                 })
-
-                console.log(this.state.communtiyList, this.state._id)
-                console.log(response.data[0]._id)
             })
             .catch(error => {
                 console.log(error)
             })
     }
 
-    onClickCommunityList = () => {
-        const token = localStorage.getItem('token')
-        const config = { headers: { Authorization: `Bearer ${token}` } }
-        if(token) {
-            axios.post('http://localhost:2008/api/board/:id', config)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                if (error.response.status === 400) {
-                    alert ('400 Error')
-                }
-            })
-
-        }
-    }
-
     renderCommuntiyList = () => {
-        const { communtiyList, _id } = this.state
-        // let communtiyLists = communtiyList.reverse()
-        return communtiyList.map(item => {
+        const { communtiyList } = this.state
+        let communtiyLists = communtiyList.reverse()
+        return communtiyLists.map(item => {
             // this.setState ({
             //     _id: item._id
             // })
-            console.log(item._id)
+            // console.log(item.isDeleted)
             return (
-                <div className='community-list-data'>
-                    <span className='list' value={item._id}> {item.title}</span>
-                    <span className='writer'>{item.nickname}</span>
-                    <span className='date'>{item.createdAt}</span>
-                </div>
+                !item.isDeleted ?
+                    <Link to={{ pathname: `/board/${item._id}`, state: { author: item.author } }}
+                        style={{ textDecoration: 'none', color: 'black' }}>
+                        <div className='community-list-data'>
+                            <span className='list'> {item.title}</span>
+                            <span className='writer'>{item.nickname}</span>
+                            <span className='date'>{item.createdAt}</span>
+                        </div>
+                    </Link>
+                    :
+                    <div className='community-list-data active'>게시글이 삭제되었습니다.</div>
             )
         })
     }
 
+    handleClickeEditButton = () => {
+        const { history } = this.props
+        history.push('/board/edit')
+    }
+
     render() {
-        const { _id } = this.state
         return (
             <>
                 <Nav />
                 <div className='community-container'>
-                    <Link to='/board/edit' style={{ textDecoration: 'none' }}>
+                    {/* <Link to='/board/edit' style={{ textDecoration: 'none' }}>
                         <div className='community-write-button'>게시글 작성</div>
-                    </Link>
+                    </Link> */}
+                    <div className='community-write-button' onClick={this.handleClickeEditButton}>게시글 작성</div>
                     <div className='community-list'>
                         <div className='community-list-header'>
                             <span className='list'>게시글 목록</span>
                             <span className='writer'>작성자</span>
                             <span className='date'>작성일</span>
                         </div>
-                        <Link to={`/board/${_id}`} style={{ textDecoration: 'none', color: 'black'}}>
-                            <div className='community-list-body' onClick={this.onClickCommunityList}>
-                                {this.renderCommuntiyList()}
-                            </div>
-                        </Link>
-
+                        <div className='community-list-body'>
+                            {this.renderCommuntiyList()}
+                        </div>
                     </div>
                 </div>
             </>

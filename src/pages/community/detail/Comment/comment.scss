@@ -1,0 +1,18 @@
+.comment-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+
+    .Dropbox {
+        float: right;
+        margin: 5px;
+    }
+    
+    .button {
+        margin: auto;
+        display: block;
+        height: 30px;
+    }
+    
+}
+
