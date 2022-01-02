@@ -10,7 +10,18 @@ class Home extends Component {
       <>
       <Nav/>
       <div className='home-container'>
-        <h1>Home!</h1>
+        <div className='card'>
+          <div className='card-title'>Hello!</div>
+          <div className='img'>
+            <img className='one' src='img/home.png' alt='1'/>
+          </div>
+          <div className='img'>
+            <img className='two' src='img/home.png' alt='2'/>
+          </div>
+          <div className='img'>
+            <img className='three' src='img/home.png' alt='3'/>
+          </div>
+        </div>
       </div>
       </>
     )

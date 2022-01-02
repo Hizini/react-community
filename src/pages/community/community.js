@@ -11,26 +11,36 @@ class Community extends Component {
         super(props)
         this.state = {
             communtiyList: [],
-            _id: []
+            _id: [],
+            currentPage: 0,
+            itemPerPage: 15,
+            totalItem: '',
         }
     }
 
     componentDidMount() {
-        axios.get('http://localhost:2008/api/board')
-            .then(response => {
-                this.setState({
-                    communtiyList: response.data,
-                })
+        this.getCommunity()
+        window.addEventListener('scroll', this.onBodyScroll)
+    }
+
+    onBodyScroll = e => {
+        const { document: { body: { scrollHeight } }, innerHeight, scrollY } = window
+        this.scroll = scrollY
+        const pageIndex = this.state.currentPage
+
+        if (innerHeight + scrollY > scrollHeight) {
+          this.getCommunity()
+          this.setState({
+            currentPage: pageIndex + 1,
             })
-            .catch(error => {
-                console.log(error)
-            })
+        }
+
     }
 
     renderCommuntiyList = () => {
         const { communtiyList } = this.state
-        let communtiyLists = communtiyList.reverse()
-        return communtiyLists.map(item => {
+        // let communtiyLists = communtiyList.reverse()
+        return communtiyList && communtiyList.map(item => {
             // this.setState ({
             //     _id: item._id
             // })
@@ -51,9 +61,44 @@ class Community extends Component {
         })
     }
 
+    renderPage = () => {
+        const { totalItem, itemPerPage, currentPage } = this.state
+        const pageLength = Math.ceil(totalItem / itemPerPage)
+        const pageNumbers = []
+        for (let i = 0; i < pageLength; i++) {
+            pageNumbers.push(i)
+        }
+        // console.log(pageNumbers)
+        return pageNumbers.map(item => {
+            return (
+                <span className={`community-page ${(item === currentPage ? 'active' : '')}`} onClick={()=>this.handlePageNumberClicked(item)}>{item+1}</span>
+            )
+        })
+    }
+
+    getCommunity = () => {
+        const { currentPage, itemPerPage, totalItem, communtiyList } = this.state
+        // console.log(totalItem, communtiyList)
+        console.log(currentPage)
+        axios.get(`http://localhost:2008/api/board?offset=${currentPage}&limit=${itemPerPage}`)
+            .then(response => {
+                this.setState({
+                    communtiyList: response.data.list,
+                    totalItem: response.data.count
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     handleClickeEditButton = () => {
         const { history } = this.props
         history.push('/board/edit')
+    }
+
+    handlePageNumberClicked = newPage => {
+        this.setState({ currentPage: newPage }, () => this.getCommunity())
     }
 
     render() {
@@ -73,6 +118,9 @@ class Community extends Component {
                         </div>
                         <div className='community-list-body'>
                             {this.renderCommuntiyList()}
+                        </div>
+                        <div className='community-page-area'>
+                            {/* {this.renderPage()} */}
                         </div>
                     </div>
                 </div>
